@@ -9,4 +9,13 @@ abstract class Controller
         extract($data);
         require_once APP_ROOT . "/app/Views/$view.php";
     }
+
+    protected function getRequestData(array $fields): array
+    {
+        $data = [];
+        foreach ($fields as $field) {
+            $data[$field] = !empty($_POST[$field]) ? $_POST[$field] : null;
+        }
+        return $data;
+    }
 }

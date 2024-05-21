@@ -43,6 +43,7 @@ class Router
     {
         $path = strtok($_SERVER['REQUEST_URI'], '?');
         $method = $_SERVER['REQUEST_METHOD'];
+        
 
         if (isset($this->routes[$method][$path])) {
             $controller = $this->routes[$method][$path]['controller'];

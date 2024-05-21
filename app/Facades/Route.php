@@ -18,6 +18,10 @@ class Route
 
     public static function dispatch(): void
     {
-        Router::getInstance()->dispatch();
+        try {
+            Router::getInstance()->dispatch();
+        } catch (\Exception $e) {
+            require_once APP_ROOT . "/app/Views/errors/404.php";
+        }
     }
 }
