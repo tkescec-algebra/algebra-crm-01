@@ -18,4 +18,10 @@ abstract class Controller
         }
         return $data;
     }
+
+    protected function redirect(string $path): void
+    {
+        header("Location: " . URL_ROOT . "/$path");
+        exit;
+    }
 }

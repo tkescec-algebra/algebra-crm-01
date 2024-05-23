@@ -96,4 +96,20 @@ class Database
     public function find($id, $column = "id") {
         return $this->where($column, $id)->get()[0] ?? null;
     }
+
+    public function insert(array $data): bool|int 
+    {
+        $this->columns = implode(", ", array_keys($data));
+        $placeholders = implode(", ", array_fill(0, count($data), "?"));
+        $sql = "INSERT INTO $this->table ($this->columns) VALUES ($placeholders)";
+
+        $stmt = $this->conn->prepare($sql);
+        $this->reset();
+
+        if ($stmt->execute(array_values($data))) {
+            return $this->conn->lastInsertId();
+        }
+
+        return false;
+    }
 }

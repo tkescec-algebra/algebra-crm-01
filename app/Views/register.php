@@ -8,5 +8,5 @@
     <input type="password" name="password" placeholder="Enter your password" required>
     <br><br>
     <button type="submit">Register</button>
-    <a href="/login">Login</a>
+    <a href="login">Login</a>
 </form>
