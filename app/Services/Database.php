@@ -93,8 +93,12 @@ class Database
         return $stmt->fetchAll();
     }
 
-    public function find($id, $column = "id") {
+    public function find($id, $column = "id"): ?array {
         return $this->where($column, $id)->get()[0] ?? null;
+    }
+
+    public function first(): ?array {
+        return $this->get()[0] ?? null;
     }
 
     public function insert(array $data): bool|int 

@@ -21,6 +21,7 @@ abstract class Controller
 
     protected function redirect(string $path): void
     {
+        $path = ltrim($path, '/');
         header("Location: " . URL_ROOT . "/$path");
         exit;
     }

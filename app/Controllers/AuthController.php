@@ -41,6 +41,15 @@ class AuthController extends Controller
     public function login()
     {
         [$email, $password] = array_values($this->getRequestData(['email', 'password']));
-        var_dump($email);
+        
+        $user = $this->userModel->findByEmail($email);
+        
+        if (!$user || !password_verify($password, $user['password'])) {
+            return $this->redirect('login');
+        }
+
+        $_SESSION['user'] = $user['id'];
+        
+        $this->redirect('client');
     }
 }
